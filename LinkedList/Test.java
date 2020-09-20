@@ -15,7 +15,26 @@ public class Test {
 		ll.append(strike);
 			
 		System.out.println(ll);
-		System.out.println("lenght: "ll.length);
+		System.out.println("length: " + ll.length);
+
+		Node thirdLine = ll.getNode(2);
+		System.out.println("The third element in the list has contains the value " + thirdLine); 
+
+		System.out.println();
+		System.out.println("Remove the 3rd and 4th lines");
+		ll.remove(2);
+		ll.pop();
+
+		System.out.println(ll);
+
+		// append and prepend;
+
+		ll.prepend(3);
+
+		System.out.println();
+		System.out.println("Final formation lineup");
+		System.out.println(ll); 
+
 
 	}
 }

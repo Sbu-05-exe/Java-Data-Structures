@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class LinkedList {
-
+	
 	private Node head;
 	private Node tail;
 	public int length;
@@ -16,51 +16,109 @@ public class LinkedList {
 	public LinkedList(Node node) {
 
 		this.head = node;
-		this.tail = node;
+		this.tail = this.head;
 		this.length = 1;
-	}
-
-	public void append(Node node) {
-
-		Node current = this.head;
-
-		while (current.getNext() != null) {
-
-			current = current.getNext();
-		
-		}
-
-		current.setNext(node);	
-		this.tail = (node);
 	
 	}
 
-	public static pop() {
+	public LinkedList(int x) {
+
+		this.head = new Node(x);
+		this.tail = this.head;
+		this.length = 1;
+
+	}
+
+	public void append(Node newTail) {
+
+		Node current = this.head;
+
+		while (current.next != null) {
+
+			current = current.next;
+		
+		}
+
+		current.next = newTail;	
+		this.tail = newTail;
+	
+	}
+
+	public void prepend(int n) {
+		
+		this.prepend(new Node(n));
+	
+	}
+
+	public void prepend(Node newHead) {
+
+		newHead.next = this.head;
+		this.head = newHead;
+
+	}
+
+	public void remove(int targetValue) {
+
+		if (this.head.value == targetValue) {
+
+			this.head = this.head.next;
+			return;
+		
+		}
+
+		Node current = this.head;
+
+		while (current.next != null) {
+
+			// since we are always checking for the next value we will never be able to check if
+			// the head is the value that we want to remove so we will special case that above.
+			if (current.next.value == targetValue) {
+
+				current.next = current.next.next;
+				return;
+			
+			}
+
+			current = current.next;
+			
+		}
+
+	}
+
+	public void pop() {
 
 		Node current = this.head;
 		Node beforeCurrent = current;
 
-		while (current.getNext() != null) {
+		while (current.next.next != null) {
 
-			beforeCurrent = current;
-			current = current.getNext();
+			current = current.next;
+
 		} 
 
-		this.tail = beforeCurrent;
-		beforeCurrent.setNext(null);
+		this.tail = current;
+		this.tail.next = null;
 	}
 
-	public Node getNode(n) {
+	public Node getNode(int index) {
 
 		int i = 0; 
 
 		Node current = this.head;
 
-		while (i < n) {
+		while (i < index) {
 
-			current = current.getNext();
-			i++
+			current = current.next;
+			i++;
 		}
+
+		return current;
+
+	}
+
+	public Node getHead() {
+
+		return this.head;
 
 	}
 
@@ -71,8 +129,8 @@ public class LinkedList {
 		Node current = this.head;
 		while (current != null) {
 
-			result = result + " " + String.valueOf(current.getValue());
-			current = current.getNext();
+			result = result + " " + String.valueOf(current.value);
+			current = current.next;
 
 		}
 
